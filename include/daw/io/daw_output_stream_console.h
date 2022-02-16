@@ -23,12 +23,7 @@ namespace daw::io {
 		console_output_stream &operator=( console_output_stream const & ) = delete;
 		console_output_stream &operator=( console_output_stream && ) = delete;
 
-		void write( std::byte byte ) override;
 		void write( std::span<std::byte const> data ) override;
-
-		[[nodiscard]] inline bool can_write( ) const noexcept override {
-			return true;
-		}
 	};
 
 	static constinit console_output_stream con_out{ };
@@ -41,12 +36,7 @@ namespace daw::io {
 		console_error_stream &operator=( console_error_stream const & ) = delete;
 		console_error_stream &operator=( console_error_stream && ) = delete;
 
-		void write( std::byte byte ) override;
 		void write( std::span<std::byte const> data ) override;
-
-		[[nodiscard]] inline bool can_write( ) const noexcept override {
-			return true;
-		}
 	};
 
 	static constinit console_output_stream con_err{ };

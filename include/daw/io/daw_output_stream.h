@@ -23,8 +23,11 @@ namespace daw::io {
 		output_stream &operator=( output_stream const & ) noexcept = default;
 		output_stream &operator=( output_stream && ) noexcept = default;
 
-		virtual void write( std::byte byte ) = 0;
-		[[nodiscard]] virtual bool can_write( ) const noexcept = 0;
+		/// Write a range of data to the output stream.  The default implementation calls write(
+		/// std::byte ) repeatedly
+		virtual void write( std::span<std::byte const> data ) = 0;
+
+		[[nodiscard]] virtual bool can_write( ) const noexcept;
 
 		/// Close the output stream.  The default implementation is a no-op
 		virtual void close( );
@@ -33,13 +36,9 @@ namespace daw::io {
 		virtual void flush( );
 
 		/// Write a range of data to the output stream.  The default implementation calls write(
-		/// std::byte ) repeatedly
-		virtual void write( std::span<std::byte const> data );
-
-		/// Write a range of data to the output stream.  The default implementation calls write(
 		/// std::span<std::byte const> ) with a subset of data specified.
 		/// @pre offset + length <= data.size( )
-		virtual void write( std::span<std::byte const> data, std::size_t offset, std::size_t length );
+		void write( std::span<std::byte const> data, std::size_t offset, std::size_t length );
 
 		template<typename... Ts>
 		void print( fmt::format_string<Ts...> fmt, Ts &&...args ) {

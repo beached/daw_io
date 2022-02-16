@@ -21,10 +21,7 @@ namespace daw::io {
 	void output_stream::close( ) {}
 	void output_stream::flush( ) {}
 
-	void output_stream::write( std::span<std::byte const> data ) {
-		for( std::byte b : data ) {
-			this->write( b );
-		}
+	bool output_stream::can_write( ) const noexcept {
+		return true;
 	}
-
 } // namespace daw::io

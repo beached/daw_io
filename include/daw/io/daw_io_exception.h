@@ -24,4 +24,17 @@ namespace daw::io {
 			return m_error_code;
 		}
 	};
+
+	class c_file_write_exception : public c_file_io_exception {
+		std::size_t m_bytes_written;
+
+	public:
+		explicit inline c_file_write_exception( int ec, std::size_t bytes_written ) noexcept
+		  : c_file_io_exception( ec )
+		  , m_bytes_written( bytes_written ) {}
+
+		[[nodiscard]] inline std::size_t bytes_written( ) const noexcept {
+			return m_bytes_written;
+		}
+	};
 } // namespace daw::io

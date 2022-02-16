@@ -37,14 +37,6 @@ namespace daw::io {
 		}
 	}
 
-	void cfile_output_stream::write( std::byte byte ) {
-		assert( static_cast<bool>( m_file ) );
-		if( int ret = std::fputc( static_cast<int>( byte ), m_file.get( ) ); ret != 0 ) {
-			auto err = ferror( m_file.get( ) );
-			throw c_file_io_exception{ err };
-		}
-	}
-
 	void cfile_output_stream::write( std::span<std::byte const> data ) {
 		assert( static_cast<bool>( m_file ) );
 		auto const sz = data.size( );

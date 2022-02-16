@@ -29,12 +29,9 @@ namespace daw::io {
 		cfile_output_stream( ) = default;
 		cfile_output_stream( std::string const &path, std::string const &mode );
 
+		void write( std::span<std::byte const> data ) override;
 		void close( ) override;
 		void flush( ) override;
-
-		void write( std::byte byte ) override;
-		void write( std::span<std::byte const> data ) override;
-
 		[[nodiscard]] bool can_write( ) const noexcept override;
 	};
 } // namespace daw::io

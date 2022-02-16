@@ -13,24 +13,10 @@
 #include <cstdio>
 
 namespace daw::io {
-	void console_output_stream::write( std::byte byte ) {
-		if( int ret = std::putc( static_cast<int>( byte ), stdout ); ret != 0 ) {
-			auto err = ferror( stdout );
-			throw c_file_io_exception{ err };
-		}
-	}
-
 	void console_output_stream::write( std::span<std::byte const> data ) {
 		auto const sz = data.size( );
 		if( auto ret = std::fwrite( data.data( ), 1, data.size( ), stdout ); ret != sz ) {
 			auto err = ferror( stdout );
-			throw c_file_io_exception{ err };
-		}
-	}
-
-	void console_error_stream::write( std::byte byte ) {
-		if( int ret = std::putc( static_cast<int>( byte ), stdout ); ret != 0 ) {
-			auto err = ferror( stderr );
 			throw c_file_io_exception{ err };
 		}
 	}

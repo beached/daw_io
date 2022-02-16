@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-void foo( daw::io::OutputStream auto &os ) {
+void foo( daw::io::output_stream &os ) {
 	os.print( "Hello {}\n", "Bob" );
 }
 

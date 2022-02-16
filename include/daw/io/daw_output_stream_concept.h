@@ -35,10 +35,5 @@ namespace daw::io {
 	};
 
 	template<typename T>
-	concept MinimalOutputStream = requires( T &stream ) {
-		stream.write( std::byte{ 0 } );
-	};
-
-	template<typename T>
-	concept OutputStream = MinimalOutputStream<T> and RangeWriteable<T>;
+	concept OutputStream = RangeWriteable<T>;
 } // namespace daw::io
