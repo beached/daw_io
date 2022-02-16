@@ -16,5 +16,6 @@ struct daw::io::output_stream {
   
   template<typename...Ts> 
   void print( std::string_view fmt, Ts &&...args );
+};
 ```
     
