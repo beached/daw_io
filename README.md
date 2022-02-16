@@ -9,4 +9,4 @@ modern type erased io library
   - `virtual void write( std::span<std::byte const> data );`
   - `virtual void write( std::span<std::byte const> data, std::size_t offset, std::size_t length );`
   - `template<typename...Ts> void print( fmt::format_string fmt, Ts &&...args );`
-  
+    
